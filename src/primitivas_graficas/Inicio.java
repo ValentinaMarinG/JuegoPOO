@@ -18,11 +18,15 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Inicio extends javax.swing.JFrame {
         Imagen player;
+        Thread proceso;
     /**
      * Creates new form Inicio
      */
     public Inicio() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setTitle("GALAXY GAME");
+        this.setSize(585,650);
         
         this.player=new Imagen(false, false, false, 200, 500, "src/Imagenes/transbordador-espacial.png", 50, 70);
         this.lienzo1.getFiguras().add(this.player);
@@ -75,6 +79,7 @@ public class Inicio extends javax.swing.JFrame {
         renew = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 153, 153));
 
         lienzo1.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -126,14 +131,14 @@ public class Inicio extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pause, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(star, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(renew, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(pause, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(renew, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lienzo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(178, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,7 +161,7 @@ public class Inicio extends javax.swing.JFrame {
 
     private void starActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_starActionPerformed
         // TODO add your handling code here:
-        Thread proceso = new Thread(this.lienzo1);
+        this.proceso = new Thread(this.lienzo1);
         this.lienzo1.setJugando(true);
         proceso.start();
     }//GEN-LAST:event_starActionPerformed
@@ -177,15 +182,14 @@ public class Inicio extends javax.swing.JFrame {
 
     private void pauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pauseActionPerformed
         // TODO add your handling code here:
-        Thread proceso = new Thread(this.lienzo1);
         this.lienzo1.setJugando(false);
     }//GEN-LAST:event_pauseActionPerformed
 
     private void renewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_renewActionPerformed
         // TODO add your handling code here:
-        Thread proceso = new Thread(this.lienzo1);
+        this.proceso = new Thread(this.lienzo1);
         this.lienzo1.setJugando(true);
-        proceso.interrupt();
+        proceso.start();
         
     }//GEN-LAST:event_renewActionPerformed
 
