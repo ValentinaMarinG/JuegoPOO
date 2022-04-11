@@ -6,6 +6,7 @@
 package Modelos;
 
 import java.awt.Color;
+import java.awt.Rectangle;
 
 /**
  *
@@ -23,6 +24,12 @@ public class Cuadrado extends FiguraEstandar{
         this.lado = lado;
     }
 
+    @Override
+    public void actualizar_area() {
+        Rectangle area = new Rectangle(this.getX(), this.getY(), lado, lado);
+        this.setArea(area);
+    }
+    
     /**
      * @return the lado
      */
@@ -36,6 +43,5 @@ public class Cuadrado extends FiguraEstandar{
     public void setLado(int lado) {
         this.lado = lado;
     }
-    
     
 }

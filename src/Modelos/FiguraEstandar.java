@@ -26,6 +26,8 @@ public abstract class FiguraEstandar extends FiguraGeometrica{
         this.x = x;
         this.y = y;
     }
+    
+    public abstract void actualizar_area();
 
     /**
      * @return the x

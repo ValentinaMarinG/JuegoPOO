@@ -6,6 +6,7 @@
 package Modelos;
 
 import java.awt.Color;
+import java.awt.Rectangle;
 
 /**
  *
@@ -32,6 +33,12 @@ public class Imagen extends FiguraEstandar{
         this.ruta = ruta;
         this.ancho = ancho;
         this.alto = alto;
+    }
+    
+    @Override
+    public void actualizar_area() {
+        Rectangle area = new Rectangle(this.getX(), this.getY(), ancho, alto);
+        this.setArea(area);
     }
     
     /**

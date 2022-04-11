@@ -23,8 +23,6 @@ public class Inicio extends javax.swing.JFrame {
      */
     public Inicio() {
         initComponents();
-        this.player=new Imagen(false, false, false, 200, 500, "src/Imagenes/transbordador-espacial.png", 50, 70);
-        this.lienzo1.getFiguras().add(this.player);
         
         Imagen asteroide_1 =new Imagen(true, false, true, 200, 0, "src/Imagenes/asteroide.png", 80, 60);
         this.lienzo1.getFiguras().add(asteroide_1);
@@ -41,8 +39,12 @@ public class Inicio extends javax.swing.JFrame {
         Imagen meteorito =new Imagen(true, false, true, 400, 0, "src/Imagenes/meteorito.png", 80, 80);
         this.lienzo1.getFiguras().add(meteorito);
         
-        //Circulo laserCohete = new Circulo(Color.ORANGE, Color.YELLOW, false, false, true, this.player.getX()+22, this.player.getY(), 5);
-        //this.lienzo1.getFiguras().add(laserCohete);
+        this.player=new Imagen(false, false, false, 200, 500, "src/Imagenes/transbordador-espacial.png", 50, 70);
+        this.lienzo1.getFiguras().add(this.player);
+        
+        
+//        Circulo laserCohete = new Circulo(Color.ORANGE, Color.YELLOW, false, false, true, this.player.getX()+22, this.player.getY(), 5);
+//        this.lienzo1.getFiguras().add(laserCohete);
         
 //        for (int i = 0; i < 10; i++) {
 //            int random = (int) Math.ceil(Math.random()*25);

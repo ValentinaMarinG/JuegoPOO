@@ -6,6 +6,7 @@
 package Modelos;
 
 import java.awt.Color;
+import java.awt.Rectangle;
 
 /**
  *
@@ -29,6 +30,12 @@ public class Rectangulo extends FiguraEstandar{
         super(borde, colorRelleno, direccionArriba, direccionAdelante, maquina, 0, 0);
         this.base = base;
         this.altura = altura;
+    }
+    
+    @Override
+    public void actualizar_area() {
+        Rectangle area = new Rectangle(this.getX(), this.getY(), base, altura);
+        this.setArea(area);
     }
     
     /**

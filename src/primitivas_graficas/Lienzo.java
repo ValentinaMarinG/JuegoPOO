@@ -28,7 +28,7 @@ import javax.swing.JOptionPane;
 public class Lienzo extends javax.swing.JPanel implements Runnable {
 
     private LinkedList<FiguraGeometrica> figuras;
-    private LinkedList<FiguraGeometrica>asteroides;
+    private LinkedList<FiguraGeometrica> asteroides;
     private boolean Jugando;
 
     /**
@@ -47,7 +47,7 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
         dibujarFiguras(g);
     }
 
-    public void dibujarFiguras(Graphics g) { 
+    public void dibujarFiguras(Graphics g) {
         for (FiguraGeometrica figuraActual : this.getFiguras()) {
             if (figuraActual instanceof Cuadrado) {
                 dibujarCuadrado(g, ((Cuadrado) figuraActual));
@@ -58,21 +58,41 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
             } else if (figuraActual instanceof Rectangulo) {
                 dibujarRectangulo(g, (Rectangulo) figuraActual);
             }
-            esperar(metodo_random(3, 20));
         }
     }
 
-    public void dibujar_asteroides(Graphics g){
-        while(this.isJugando()){
-            for(FiguraGeometrica asteroide_actual:this.asteroides){
+    public void disparar_laser(Graphics g) {
+        int contador = 0;
+        FiguraGeometrica laser = buscarLaser();
+        while (contador <= 3) {
+            dibujarCirculo(g, (Circulo) laser);
+            contador++;
+        }
+    }
+
+    public FiguraGeometrica buscarLaser() {
+        FiguraGeometrica laser = null;
+        int i = 0;
+        while (laser != null) {
+            if (this.figuras.get(i).equals("laserCohete")) {
+                laser = this.figuras.get(i);
+            }
+            i++;
+        }
+        return laser;
+    }
+
+    public void dibujar_asteroides(Graphics g) {
+        while (this.isJugando()) {
+            for (FiguraGeometrica asteroide_actual : this.asteroides) {
                 dibujarImagen(g, (Imagen) asteroide_actual);
             }
         }
     }
-    
-    public void dispararLaser(Graphics g, Circulo Laser){
+
+    public void dispararLaser(Graphics g, Circulo Laser) {
         int contador = 0;
-        while(contador<=3){
+        while (contador <= 3) {
             dibujarCirculo(g, Laser);
             contador++;
             esperar(5);
@@ -135,9 +155,6 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
             for (FiguraGeometrica Actual : this.getFiguras()) {
                 if (Actual instanceof FiguraEstandar) {
                     if (Actual.isMaquina()) {
-                        if (Actual instanceof Circulo) {
-
-                        } else {
 //                            if (Actual.isDireccionAdelante()) {
 //                                ((FiguraEstandar) Actual).setX(((FiguraEstandar) Actual).getX() + 1);
 //                            } else {
@@ -147,25 +164,21 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
                                 ((FiguraEstandar) Actual).setY(((FiguraEstandar) Actual).getY() + 1);
                             } else {
                                 ((FiguraEstandar) Actual).setY(((FiguraEstandar) Actual).getY() - 1);
-                            } 
-
-//                                else {
-//                        boolean colision = verificarColision(Actual);
-//                        if (colision) {
-//                            this.setJugando(false);
-//                            JOptionPane.showMessageDialog(this, "Game out");
-//                        }
-//                            }
+                            }
+                    }else{
+                            boolean colision = verificarColision(Actual);
+                            if (colision) {
+                                this.setJugando(false);
+                                JOptionPane.showMessageDialog(this, "Game out");
+                            }
+                        }
 //                            ((Cuadrado) Actual).setX(((Cuadrado)Actual).getX()+1);
-//                        }
-                        repaint();
-                        esperar(5);
                     }
+                    repaint();
+                    esperar(5);
                 }
             }
         }
-    }
-    }
 
     public void esperar(int milisegundos) {
         try {
@@ -183,11 +196,13 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
     public boolean verificarColision(FiguraGeometrica jugador) {
         boolean respuesta = false;
         int i = 0;
-        while (i < this.getFiguras().size() && !respuesta) {
-            if (jugador != this.getFiguras().get(i) && jugador.getArea().intersects(this.getFiguras().get(i).getArea())) {
+        while (i < this.figuras.size() && respuesta==false) {
+            if (jugador != this.figuras.get(i) && jugador.getArea().intersects(this.figuras.get(i).getArea())) {
+                System.out.println("d");
                 respuesta = true;
             }
             i++;
+            System.out.println("i"+i);
         }
 
         return respuesta;

@@ -32,6 +32,8 @@ public abstract class FiguraGeometrica {
         this.area = null;
     }
 
+    public abstract void actualizar_area();
+    
     /**
      * @return the borde
      */

@@ -6,6 +6,7 @@
 package Modelos;
 
 import java.awt.Color;
+import java.awt.Rectangle;
 
 /**
  *
@@ -23,6 +24,12 @@ public class Circulo extends FiguraEstandar{
         this.radio = radio;
     }
 
+    @Override
+    public void actualizar_area() {
+        Rectangle area = new Rectangle(this.getX(), this.getY(), 2*radio, 2*radio);
+        this.setArea(area);
+    }
+    
     /**
      * @return the radio
      */
