@@ -22,6 +22,7 @@ public class Circulo extends FiguraEstandar{
     public Circulo(Color borde, Color colorRelleno, boolean direccionArriba, boolean direccionAdelante, boolean maquina, int x, int y, int radio) {
         super(borde, colorRelleno, direccionArriba, direccionAdelante, maquina, x, y);
         this.radio = radio;
+        actualizar_area();
     }
 
     @Override

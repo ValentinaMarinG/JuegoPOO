@@ -30,6 +30,7 @@ public class Rectangulo extends FiguraEstandar{
         super(borde, colorRelleno, direccionArriba, direccionAdelante, maquina, 0, 0);
         this.base = base;
         this.altura = altura;
+        actualizar_area();
     }
     
     @Override

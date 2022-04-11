@@ -22,6 +22,7 @@ public class Cuadrado extends FiguraEstandar{
     public Cuadrado(Color borde, Color colorRelleno, boolean direccionArriba, boolean direccionAdelante, boolean maquina, int x, int y, int lado) {
         super(borde, colorRelleno, direccionArriba, direccionAdelante, maquina, x, y);
         this.lado = lado;
+        actualizar_area();
     }
 
     @Override

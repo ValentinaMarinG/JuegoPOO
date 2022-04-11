@@ -33,6 +33,7 @@ public class Imagen extends FiguraEstandar{
         this.ruta = ruta;
         this.ancho = ancho;
         this.alto = alto;
+        actualizar_area();
     }
     
     @Override

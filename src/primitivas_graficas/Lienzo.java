@@ -154,31 +154,32 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
         while (this.isJugando()) {
             for (FiguraGeometrica Actual : this.getFiguras()) {
                 if (Actual instanceof FiguraEstandar) {
-                    if (Actual.isMaquina()) {
+                    if(Actual.isMaquina()){
 //                            if (Actual.isDireccionAdelante()) {
 //                                ((FiguraEstandar) Actual).setX(((FiguraEstandar) Actual).getX() + 1);
 //                            } else {
 //                                ((FiguraEstandar) Actual).setX(((FiguraEstandar) Actual).getX() - 1);
 //                            }
-                            if (Actual.isDireccionArriba()) {
-                                ((FiguraEstandar) Actual).setY(((FiguraEstandar) Actual).getY() + 1);
-                            } else {
-                                ((FiguraEstandar) Actual).setY(((FiguraEstandar) Actual).getY() - 1);
-                            }
-                    }else{
-                            boolean colision = verificarColision(Actual);
-                            if (colision) {
-                                this.setJugando(false);
-                                JOptionPane.showMessageDialog(this, "Game out");
-                            }
+                        if (Actual.isDireccionArriba()) {
+                            ((FiguraEstandar) Actual).setY(((FiguraEstandar) Actual).getY() + 1);
+                        } else {
+                            ((FiguraEstandar) Actual).setY(((FiguraEstandar) Actual).getY() - 1);
                         }
-//                            ((Cuadrado) Actual).setX(((Cuadrado)Actual).getX()+1);
+                    }else{
+                        boolean colision = verificarColision(Actual);
+                        System.out.println(colision);
+                        if (colision) {
+                            this.setJugando(false);
+                            JOptionPane.showMessageDialog(this, "Game out");
+                        }
                     }
-                    repaint();
-                    esperar(5);
+//                            ((Cuadrado) Actual).setX(((Cuadrado)Actual).getX()+1);
                 }
+                repaint();
+                esperar(5);
             }
         }
+    }
 
     public void esperar(int milisegundos) {
         try {
@@ -188,21 +189,19 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
         }
     }
 
-    public int metodo_random(int valorMin, int valorMax){
-        int NumRandom=ThreadLocalRandom.current().nextInt(valorMin, valorMax);
+    public int metodo_random(int valorMin, int valorMax) {
+        int NumRandom = ThreadLocalRandom.current().nextInt(valorMin, valorMax);
         return NumRandom;
     }
-    
+
     public boolean verificarColision(FiguraGeometrica jugador) {
         boolean respuesta = false;
         int i = 0;
-        while (i < this.figuras.size() && respuesta==false) {
+        while (i < this.figuras.size() && !respuesta) {
             if (jugador != this.figuras.get(i) && jugador.getArea().intersects(this.figuras.get(i).getArea())) {
-                System.out.println("d");
                 respuesta = true;
             }
             i++;
-            System.out.println("i"+i);
         }
 
         return respuesta;
