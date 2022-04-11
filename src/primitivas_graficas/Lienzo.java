@@ -166,13 +166,15 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
                             ((FiguraEstandar) Actual).setY(((FiguraEstandar) Actual).getY() - 1);
                         }
                     }else{
-                        boolean colision = verificarColision(Actual);
+                        verificarColision(Actual);
+                        boolean colision = verificarColision((FiguraEstandar)Actual);
                         System.out.println(colision);
                         if (colision) {
-                            this.setJugando(false);
+                            this.Jugando = false;
                             JOptionPane.showMessageDialog(this, "Game out");
                         }
                     }
+                    Actual.actualizar_area();
 //                            ((Cuadrado) Actual).setX(((Cuadrado)Actual).getX()+1);
                 }
                 repaint();
