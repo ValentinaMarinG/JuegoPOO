@@ -30,6 +30,7 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
     private LinkedList<FiguraGeometrica> figuras;
     private LinkedList<FiguraGeometrica> asteroides;
     private boolean Jugando;
+    int segundo;
 
     /**
      * Creates new form Lienzo
@@ -39,6 +40,7 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
         this.figuras = new LinkedList<>();
         this.asteroides = new LinkedList<>();
         this.Jugando = false;
+        this.segundo = 0;
     }
 
     @Override
@@ -161,6 +163,16 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
                     }
                 }
             }
+                    if(Actual.isMaquina()){
+            validarDirecciones();
+            System.out.println(""+segundo);
+            if(segundo %100 == 0){
+                System.out.println("generar");
+                Imagen asteroide_1 =new Imagen(true, false, true, 200, 0, "src/Imagenes/asteroide.png", 80, 60);
+                this.figuras.add(asteroide_1);
+            }
+            repaint();
+            esperar(20);
         }
     }
     
@@ -195,6 +207,7 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
     }
 
     public void esperar(int milisegundos) {
+        this.segundo++;
         try {
             Thread.sleep(milisegundos);
         

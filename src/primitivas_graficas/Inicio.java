@@ -10,7 +10,9 @@ import Modelos.Cuadrado;
 import Modelos.Imagen;
 import Modelos.Rectangulo;
 import java.awt.Color;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
+import java.util.LinkedList;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.JOptionPane;
 
@@ -27,34 +29,19 @@ public class Inicio extends javax.swing.JFrame {
      */
     public Inicio() {
         initComponents();
+         this.lienzo1=new Lienzo();
         
-        this.lienzo1=new Lienzo();
         this.lienzo1.setVisible(true);
-        this.lienzo1.setSize(800, 700);
+        this.lienzo1.setSize(585, 650);
+        this.lienzo1.setBackground(Color.black);
+        Point p=new Point(70, 10);
+        this.lienzo1.setLocation(p);
         this.add(lienzo1);
-        this.lienzo1.setBackground(Color.BLACK);
-        
         this.setLocationRelativeTo(null);
         this.setTitle("GALAXY GAME");
         this.setSize(585,650);
         
-        this.player=new Imagen(false, false, false, 200, 500, "src/Imagenes/transbordador-espacial.png", 50, 70);
-        this.lienzo1.getFiguras().add(this.player);
-        
-        Imagen asteroide_1 =new Imagen(true, false, true, 200, 0, "src/Imagenes/asteroide.png", 80, 60);
-        this.lienzo1.getFiguras().add(asteroide_1);
-        
-        Imagen asteroide_2 =new Imagen(true, false, true, 300, 0, "src/Imagenes/asteroide (1).png", 90, 90);
-        this.lienzo1.getFiguras().add(asteroide_2);
-        
-        Imagen asteroide_3 =new Imagen(true, false, true, 250, 0, "src/Imagenes/asteroide (2).png", 80, 90);
-        this.lienzo1.getFiguras().add(asteroide_3);
-        
-        Imagen asteroide_4 =new Imagen(true, false, true, 100, 0, "src/Imagenes/asteroide (3).png", 80, 80);
-        this.lienzo1.getFiguras().add(asteroide_4);
-        
-        Imagen meteorito =new Imagen(true, false, true, 400, 0, "src/Imagenes/meteorito.png", 80, 80);
-        this.lienzo1.getFiguras().add(meteorito);
+        iniciarMundo();
        
         
         
@@ -73,6 +60,25 @@ public class Inicio extends javax.swing.JFrame {
         
         
     }
+    public void iniciarMundo(){
+        this.player=new Imagen(false, false, false, 200, 500, "src/Imagenes/transbordador-espacial.png", 50, 70);
+        this.lienzo1.getFiguras().add(this.player);
+        
+        Imagen asteroide_1 =new Imagen(true, false, true, 200, 0, "src/Imagenes/asteroide.png", 80, 60);
+        this.lienzo1.getFiguras().add(asteroide_1);
+        
+        Imagen asteroide_2 =new Imagen(true, false, true, 300, 0, "src/Imagenes/asteroide (1).png", 90, 90);
+        this.lienzo1.getFiguras().add(asteroide_2);
+        
+        Imagen asteroide_3 =new Imagen(true, false, true, 250, 0, "src/Imagenes/asteroide (2).png", 80, 90);
+        this.lienzo1.getFiguras().add(asteroide_3);
+        
+        Imagen asteroide_4 =new Imagen(true, false, true, 100, 0, "src/Imagenes/asteroide (3).png", 80, 80);
+        this.lienzo1.getFiguras().add(asteroide_4);
+        
+        Imagen meteorito =new Imagen(true, false, true, 400, 0, "src/Imagenes/meteorito.png", 80, 80);
+        this.lienzo1.getFiguras().add(meteorito);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -89,6 +95,11 @@ public class Inicio extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 153, 153));
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         start.setBackground(new java.awt.Color(153, 255, 255));
         start.setForeground(new java.awt.Color(255, 255, 255));
@@ -133,6 +144,7 @@ public class Inicio extends javax.swing.JFrame {
                     .addComponent(pause, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(renew, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(502, Short.MAX_VALUE))
+                .addContainerGap(605, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,6 +156,9 @@ public class Inicio extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(renew)
                 .addContainerGap(429, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(renew)
+                .addContainerGap(422, Short.MAX_VALUE))
         );
 
         pack();
@@ -155,6 +170,7 @@ public class Inicio extends javax.swing.JFrame {
         this.proceso = new Thread(this.lienzo1);
         this.lienzo1.setJugando(true);
         proceso.start();
+        this.start.setEnabled(false);
     }//GEN-LAST:event_startActionPerformed
 
     private void startKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_startKeyPressed
@@ -170,6 +186,8 @@ public class Inicio extends javax.swing.JFrame {
         }else if(key == KeyEvent.VK_RIGHT){
             this.player.setX(this.player.getX()+20);
         }else if(key == KeyEvent.VK_SPACE){
+            Imagen bala=new Imagen(false, false, false, 0, 0, "src/Imagenes/transbordador-espacial.png", 50, 70);
+            this.lienzo1.getFiguras().add(bala);
         }
     }//GEN-LAST:event_startKeyPressed
 
@@ -181,9 +199,17 @@ public class Inicio extends javax.swing.JFrame {
     private void renewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_renewActionPerformed
         // TODO add your handling code here:
         this.proceso = new Thread(this.lienzo1);
+        this.lienzo1.setJugando(false);
+        this.lienzo1.setFiguras(new LinkedList<>());
+        iniciarMundo();
         this.lienzo1.setJugando(true);
+        this.proceso.start();
         
     }//GEN-LAST:event_renewActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formKeyPressed
 
     /**
      * @param args the command line arguments
