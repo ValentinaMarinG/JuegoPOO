@@ -33,7 +33,11 @@
                   <Component id="pause" alignment="0" min="-2" pref="47" max="-2" attributes="0"/>
                   <Component id="renew" alignment="0" min="-2" pref="47" max="-2" attributes="0"/>
               </Group>
+<<<<<<< HEAD
+              <EmptySpace pref="502" max="32767" attributes="0"/>
+=======
               <EmptySpace pref="605" max="32767" attributes="0"/>
+>>>>>>> 03256cfb3c56731488f5d580d09bf713922f9200
           </Group>
       </Group>
     </DimensionLayout>
@@ -44,9 +48,15 @@
               <Component id="start" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="pause" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="renew" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="429" max="32767" attributes="0"/>
+=======
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="renew" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="422" max="32767" attributes="0"/>
+>>>>>>> 03256cfb3c56731488f5d580d09bf713922f9200
           </Group>
       </Group>
     </DimensionLayout>

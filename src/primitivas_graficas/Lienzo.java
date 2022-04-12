@@ -153,7 +153,21 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
 
     @Override
     public void run() {
+<<<<<<< HEAD
         while (this.isJugando()) {
+=======
+        while(this.Jugando){
+            for (FiguraGeometrica Actual : this.figuras) {
+                if (Actual instanceof FiguraEstandar) {
+                    if (Actual.isMaquina()) {
+                        validarDirecciones();
+                        repaint();
+                        esperar(20);
+                    }
+                }
+            }
+                    if(Actual.isMaquina()){
+>>>>>>> 284214278cb2b29ab1e1c204497d6c47e9802c06
             validarDirecciones();
             System.out.println(""+segundo);
             if(segundo %100 == 0){
@@ -165,39 +179,52 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
             esperar(20);
         }
     }
-    public void validarDirecciones(){
+    
+
+    public void validarDirecciones() {
         for (FiguraGeometrica Actual : this.getFiguras()) {
             if (Actual instanceof FiguraEstandar) {
-                if(Actual.isMaquina()){
+                if (Actual.isMaquina()) {
 //                            if (Actual.isDireccionAdelante()) {
 //                                ((FiguraEstandar) Actual).setX(((FiguraEstandar) Actual).getX() + 1);
 //                            } else {
 //                                ((FiguraEstandar) Actual).setX(((FiguraEstandar) Actual).getX() - 1);
 //                            }
-                        if (Actual.isDireccionArriba()) {
-                            ((FiguraEstandar) Actual).setY(((FiguraEstandar) Actual).getY() + 1);
-                        } else {
-                            ((FiguraEstandar) Actual).setY(((FiguraEstandar) Actual).getY() - 1);
-                        }
-                    }else{
-                        boolean colision = verificarColision(Actual);
-                        //System.out.println(colision);
-                        if (colision) {
-                            this.setJugando(false);
-                            JOptionPane.showMessageDialog(this, "Game out");
-                        }
+                    if (Actual.isDireccionArriba()) {
+                        ((FiguraEstandar) Actual).setY(((FiguraEstandar) Actual).getY() + 1);
+                    } else {
+                        ((FiguraEstandar) Actual).setY(((FiguraEstandar) Actual).getY() - 1);
                     }
+                } else {
+                    boolean colision = verificarColision(Actual);
+                    //System.out.println(colision);
+                    if (colision) {
+                        this.setJugando(false);
+                        JOptionPane.showMessageDialog(this, "Game out");
+                    }
+<<<<<<< HEAD
                     Actual.actualizar_area();
 //                            ((Cuadrado) Actual).setX(((Cuadrado)Actual).getX()+1);
             }   
+=======
+                }
+                Actual.actualizar_area();
+//                            ((Cuadrado) Actual).setX(((Cuadrado)Actual).getX()+1);
+            }
+            Actual.actualizar_area();
+>>>>>>> 284214278cb2b29ab1e1c204497d6c47e9802c06
         }
     }
+
     public void esperar(int milisegundos) {
         this.segundo++;
         try {
             Thread.sleep(milisegundos);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Lienzo.class.getName()).log(Level.SEVERE, null, ex);
+        
+
+} catch (InterruptedException ex) {
+            Logger.getLogger(Lienzo.class
+.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
