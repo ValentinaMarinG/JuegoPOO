@@ -29,7 +29,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="star" alignment="0" min="-2" pref="47" max="-2" attributes="0"/>
+                  <Component id="start" alignment="0" min="-2" pref="47" max="-2" attributes="0"/>
                   <Component id="pause" alignment="0" min="-2" pref="47" max="-2" attributes="0"/>
                   <Component id="renew" alignment="0" min="-2" pref="47" max="-2" attributes="0"/>
               </Group>
@@ -45,7 +45,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="star" min="-2" max="-2" attributes="0"/>
+                      <Component id="start" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="pause" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -80,7 +80,7 @@
         </DimensionLayout>
       </Layout>
     </Container>
-    <Component class="javax.swing.JButton" name="star">
+    <Component class="javax.swing.JButton" name="start">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="99" type="rgb"/>
@@ -89,7 +89,7 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/primitivas_graficas/start.png"/>
+          <Image iconType="3" name="/Imagenes/start.png"/>
         </Property>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[577, 521]"/>
@@ -99,8 +99,8 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="starActionPerformed"/>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="starKeyPressed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="startActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="startKeyPressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="pause">
@@ -109,7 +109,7 @@
           <Color blue="cc" green="66" red="ff" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/primitivas_graficas/pause.png"/>
+          <Image iconType="3" name="/Imagenes/pause.png"/>
         </Property>
       </Properties>
       <Events>
@@ -122,7 +122,7 @@
           <Color blue="cc" green="0" red="cc" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/primitivas_graficas/renew.png"/>
+          <Image iconType="3" name="/Imagenes/renew.png"/>
         </Property>
       </Properties>
       <Events>

@@ -10,7 +10,9 @@ import Modelos.Cuadrado;
 import Modelos.Imagen;
 import Modelos.Rectangulo;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.util.concurrent.ThreadLocalRandom;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -74,7 +76,7 @@ public class Inicio extends javax.swing.JFrame {
     private void initComponents() {
 
         lienzo1 = new primitivas_graficas.Lienzo();
-        star = new javax.swing.JButton();
+        start = new javax.swing.JButton();
         pause = new javax.swing.JButton();
         renew = new javax.swing.JButton();
 
@@ -94,24 +96,24 @@ public class Inicio extends javax.swing.JFrame {
             .addGap(0, 551, Short.MAX_VALUE)
         );
 
-        star.setBackground(new java.awt.Color(153, 255, 255));
-        star.setForeground(new java.awt.Color(255, 255, 255));
-        star.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primitivas_graficas/start.png"))); // NOI18N
-        star.setMaximumSize(new java.awt.Dimension(577, 521));
-        star.setMinimumSize(new java.awt.Dimension(577, 521));
-        star.addActionListener(new java.awt.event.ActionListener() {
+        start.setBackground(new java.awt.Color(153, 255, 255));
+        start.setForeground(new java.awt.Color(255, 255, 255));
+        start.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/start.png"))); // NOI18N
+        start.setMaximumSize(new java.awt.Dimension(577, 521));
+        start.setMinimumSize(new java.awt.Dimension(577, 521));
+        start.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                starActionPerformed(evt);
+                startActionPerformed(evt);
             }
         });
-        star.addKeyListener(new java.awt.event.KeyAdapter() {
+        start.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                starKeyPressed(evt);
+                startKeyPressed(evt);
             }
         });
 
         pause.setBackground(new java.awt.Color(255, 102, 204));
-        pause.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primitivas_graficas/pause.png"))); // NOI18N
+        pause.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/pause.png"))); // NOI18N
         pause.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pauseActionPerformed(evt);
@@ -119,7 +121,7 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         renew.setBackground(new java.awt.Color(204, 0, 204));
-        renew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primitivas_graficas/renew.png"))); // NOI18N
+        renew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/renew.png"))); // NOI18N
         renew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 renewActionPerformed(evt);
@@ -133,7 +135,7 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(star, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(start, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pause, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(renew, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -146,7 +148,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(star, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(start, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pause)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -159,26 +161,29 @@ public class Inicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void starActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_starActionPerformed
+    private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
         // TODO add your handling code here:
+        
         this.proceso = new Thread(this.lienzo1);
         this.lienzo1.setJugando(true);
         proceso.start();
-    }//GEN-LAST:event_starActionPerformed
+    }//GEN-LAST:event_startActionPerformed
 
-    private void starKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_starKeyPressed
+    private void startKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_startKeyPressed
         // TODO add your handling code here:
         this.setFocusable(true);
-        if(evt.getKeyChar() == 'w'){
+        int key = evt.getKeyCode();
+        if(key == KeyEvent.VK_UP){
             //this.player.setY(this.player.getY()-20);
-        }else if(evt.getKeyChar() == 'a'){
+        }else if(key == KeyEvent.VK_LEFT){
             this.player.setX(this.player.getX()-20);
-        }else if(evt.getKeyChar() == 's'){
+        }else if(key == KeyEvent.VK_DOWN){
             //this.player.setY(this.player.getY()+20);
-        }else if(evt.getKeyChar() == 'd'){
+        }else if(key == KeyEvent.VK_RIGHT){
             this.player.setX(this.player.getX()+20);
+        }else if(key == KeyEvent.VK_SPACE){
         }
-    }//GEN-LAST:event_starKeyPressed
+    }//GEN-LAST:event_startKeyPressed
 
     private void pauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pauseActionPerformed
         // TODO add your handling code here:
@@ -189,7 +194,6 @@ public class Inicio extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.proceso = new Thread(this.lienzo1);
         this.lienzo1.setJugando(true);
-        proceso.start();
         
     }//GEN-LAST:event_renewActionPerformed
 
@@ -232,6 +236,6 @@ public class Inicio extends javax.swing.JFrame {
     private primitivas_graficas.Lienzo lienzo1;
     private javax.swing.JButton pause;
     private javax.swing.JButton renew;
-    private javax.swing.JButton star;
+    private javax.swing.JButton start;
     // End of variables declaration//GEN-END:variables
 }
