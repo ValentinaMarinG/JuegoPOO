@@ -155,6 +155,15 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
             for (FiguraGeometrica Actual : this.figuras) {
                 if (Actual instanceof FiguraEstandar) {
                     if(Actual.isMaquina()){
+            validarDirecciones();
+            repaint();
+            esperar(20);
+        }
+    }
+    public void validarDirecciones(){
+        for (FiguraGeometrica Actual : this.getFiguras()) {
+            if (Actual instanceof FiguraEstandar) {
+                if(Actual.isMaquina()){
 //                            if (Actual.isDireccionAdelante()) {
 //                                ((FiguraEstandar) Actual).setX(((FiguraEstandar) Actual).getX() + 1);
 //                            } else {
@@ -176,12 +185,10 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
                     Actual.actualizar_area();
 //                            ((Cuadrado) Actual).setX(((Cuadrado)Actual).getX()+1);
                 }
-                repaint();
-                esperar(5);
-            }
+                Actual.actualizar_area();
+            }   
         }
     }
-
     public void esperar(int milisegundos) {
         try {
             Thread.sleep(milisegundos);
