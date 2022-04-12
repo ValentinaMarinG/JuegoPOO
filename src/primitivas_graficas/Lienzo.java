@@ -152,7 +152,7 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
     @Override
     public void run() {
         while (this.isJugando()) {
-            for (FiguraGeometrica Actual : this.getFiguras()) {
+            for (FiguraGeometrica Actual : this.figuras) {
                 if (Actual instanceof FiguraEstandar) {
                     if(Actual.isMaquina()){
 //                            if (Actual.isDireccionAdelante()) {
@@ -167,12 +167,13 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
                         }
                     }else{
                         boolean colision = verificarColision(Actual);
-                        System.out.println(colision);
+                        //System.out.println(colision);
                         if (colision) {
                             this.setJugando(false);
                             JOptionPane.showMessageDialog(this, "Game out");
                         }
                     }
+                    Actual.actualizar_area();
 //                            ((Cuadrado) Actual).setX(((Cuadrado)Actual).getX()+1);
                 }
                 repaint();
@@ -197,9 +198,10 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
     public boolean verificarColision(FiguraGeometrica jugador) {
         boolean respuesta = false;
         int i = 0;
-        while (i < this.figuras.size() && !respuesta) {
+        while (i < this.figuras.size() && respuesta==false) {
             if (jugador != this.figuras.get(i) && jugador.getArea().intersects(this.figuras.get(i).getArea())) {
                 respuesta = true;
+                System.out.println(respuesta);
             }
             i++;
         }
