@@ -153,7 +153,21 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
 
     @Override
     public void run() {
+<<<<<<< HEAD
         while (this.isJugando()) {
+=======
+        while(this.Jugando){
+            for (FiguraGeometrica Actual : this.figuras) {
+                if (Actual instanceof FiguraEstandar) {
+                    if (Actual.isMaquina()) {
+                        validarDirecciones();
+                        repaint();
+                        esperar(20);
+                    }
+                }
+            }
+                    if(Actual.isMaquina()){
+>>>>>>> 284214278cb2b29ab1e1c204497d6c47e9802c06
             validarDirecciones();
             System.out.println(""+segundo);
             if(segundo %100 == 0){
@@ -165,10 +179,12 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
             esperar(20);
         }
     }
-    public void validarDirecciones(){
+    
+
+    public void validarDirecciones() {
         for (FiguraGeometrica Actual : this.getFiguras()) {
             if (Actual instanceof FiguraEstandar) {
-                if(Actual.isMaquina()){
+                if (Actual.isMaquina()) {
 //                            if (Actual.isDireccionAdelante()) {
 //                                ((FiguraEstandar) Actual).setX(((FiguraEstandar) Actual).getX() + 1);
 //                            } else {
@@ -179,25 +195,36 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
                     } else {
                         ((FiguraEstandar) Actual).setY(((FiguraEstandar) Actual).getY() - 1);
                     }
-                }else{
-                    verificarColision(Actual);
-                    boolean colision = verificarColision((FiguraEstandar)Actual);
-                    System.out.println(colision);
+                } else {
+                    boolean colision = verificarColision(Actual);
+                    //System.out.println(colision);
                     if (colision) {
-                        this.Jugando = false;
+                        this.setJugando(false);
                         JOptionPane.showMessageDialog(this, "Game out");
                     }
+<<<<<<< HEAD
+                    Actual.actualizar_area();
+//                            ((Cuadrado) Actual).setX(((Cuadrado)Actual).getX()+1);
+            }   
+=======
                 }
                 Actual.actualizar_area();
-            }   
+//                            ((Cuadrado) Actual).setX(((Cuadrado)Actual).getX()+1);
+            }
+            Actual.actualizar_area();
+>>>>>>> 284214278cb2b29ab1e1c204497d6c47e9802c06
         }
     }
+
     public void esperar(int milisegundos) {
         this.segundo++;
         try {
             Thread.sleep(milisegundos);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Lienzo.class.getName()).log(Level.SEVERE, null, ex);
+        
+
+} catch (InterruptedException ex) {
+            Logger.getLogger(Lienzo.class
+.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -209,9 +236,10 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
     public boolean verificarColision(FiguraGeometrica jugador) {
         boolean respuesta = false;
         int i = 0;
-        while (i < this.figuras.size() && !respuesta) {
+        while (i < this.figuras.size() && respuesta==false) {
             if (jugador != this.figuras.get(i) && jugador.getArea().intersects(this.figuras.get(i).getArea())) {
                 respuesta = true;
+                System.out.println(respuesta);
             }
             i++;
         }

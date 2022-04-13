@@ -95,11 +95,6 @@ public class Inicio extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 153, 153));
-        addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                formKeyPressed(evt);
-            }
-        });
 
         start.setBackground(new java.awt.Color(153, 255, 255));
         start.setForeground(new java.awt.Color(255, 255, 255));
@@ -132,6 +127,11 @@ public class Inicio extends javax.swing.JFrame {
                 renewActionPerformed(evt);
             }
         });
+        renew.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                renewKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -143,6 +143,7 @@ public class Inicio extends javax.swing.JFrame {
                     .addComponent(start, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pause, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(renew, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(502, Short.MAX_VALUE))
                 .addContainerGap(605, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -152,6 +153,9 @@ public class Inicio extends javax.swing.JFrame {
                 .addComponent(start, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pause)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(renew)
+                .addContainerGap(429, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(renew)
                 .addContainerGap(422, Short.MAX_VALUE))
@@ -166,7 +170,7 @@ public class Inicio extends javax.swing.JFrame {
         this.proceso = new Thread(this.lienzo1);
         this.lienzo1.setJugando(true);
         proceso.start();
-        this.start.setEnabled(false);
+        //this.start.setEnabled(false);
     }//GEN-LAST:event_startActionPerformed
 
     private void startKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_startKeyPressed
@@ -182,14 +186,17 @@ public class Inicio extends javax.swing.JFrame {
         }else if(key == KeyEvent.VK_RIGHT){
             this.player.setX(this.player.getX()+20);
         }else if(key == KeyEvent.VK_SPACE){
-            Imagen bala=new Imagen(false, false, false, 0, 0, "src/Imagenes/transbordador-espacial.png", 50, 70);
+            Imagen bala=new Imagen(false, false, false, 300, 500, "src/Imagenes/bullet.png", 50, 70);
             this.lienzo1.getFiguras().add(bala);
         }
+        
     }//GEN-LAST:event_startKeyPressed
 
     private void pauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pauseActionPerformed
         // TODO add your handling code here:
         this.lienzo1.setJugando(false);
+        this.start.setEnabled(false);
+        
     }//GEN-LAST:event_pauseActionPerformed
 
     private void renewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_renewActionPerformed
@@ -203,9 +210,23 @@ public class Inicio extends javax.swing.JFrame {
         
     }//GEN-LAST:event_renewActionPerformed
 
-    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+    private void renewKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_renewKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_formKeyPressed
+        this.setFocusable(true);
+        int key = evt.getKeyCode();
+        if(key == KeyEvent.VK_UP){
+            //this.player.setY(this.player.getY()-20);
+        }else if(key == KeyEvent.VK_LEFT){
+            this.player.setX(this.player.getX()-20);
+        }else if(key == KeyEvent.VK_DOWN){
+            //this.player.setY(this.player.getY()+20);
+        }else if(key == KeyEvent.VK_RIGHT){
+            this.player.setX(this.player.getX()+20);
+        }else if(key == KeyEvent.VK_SPACE){
+            Imagen bala=new Imagen(false, false, false, 300, 500, "src/Imagenes/bullet.png", 50, 70);
+            this.lienzo1.getFiguras().add(bala);
+        }
+    }//GEN-LAST:event_renewKeyPressed
 
     /**
      * @param args the command line arguments
