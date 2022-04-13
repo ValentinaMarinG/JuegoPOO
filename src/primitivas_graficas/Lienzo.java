@@ -153,9 +153,6 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
 
     @Override
     public void run() {
-<<<<<<< HEAD
-        while (this.isJugando()) {
-=======
         while(this.Jugando){
             for (FiguraGeometrica Actual : this.figuras) {
                 if (Actual instanceof FiguraEstandar) {
@@ -167,7 +164,6 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
                 }
             }
                     if(Actual.isMaquina()){
->>>>>>> 284214278cb2b29ab1e1c204497d6c47e9802c06
             validarDirecciones();
             System.out.println(""+segundo);
             if(segundo %100 == 0){
@@ -202,17 +198,9 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
                         this.setJugando(false);
                         JOptionPane.showMessageDialog(this, "Game out");
                     }
-<<<<<<< HEAD
                     Actual.actualizar_area();
 //                            ((Cuadrado) Actual).setX(((Cuadrado)Actual).getX()+1);
             }   
-=======
-                }
-                Actual.actualizar_area();
-//                            ((Cuadrado) Actual).setX(((Cuadrado)Actual).getX()+1);
-            }
-            Actual.actualizar_area();
->>>>>>> 284214278cb2b29ab1e1c204497d6c47e9802c06
         }
     }
 
